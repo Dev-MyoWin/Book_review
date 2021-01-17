@@ -12,8 +12,7 @@
                         <h5 class="card-title">{{$book->name}}</h5>
                         <p class="card-text">{{substr($book->description,0,30)}}</p>
 
-                        <a href="" class="btn btn-primary">Detail</a>
-                        <a href="" class="btn btn-warning float-right">Review</a>
+                        <a href="{{url('/books/detail/'.$book->id)}}" class="btn btn-primary float-right">Detail</a>
 
                         </div>
                     </div>
