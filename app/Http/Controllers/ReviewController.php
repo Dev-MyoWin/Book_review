@@ -40,6 +40,7 @@ class ReviewController extends Controller
 
         $data = Review::where('user_id',Auth::user()->id)->where('book_id',$request->book_id)->get();
 
+
         if(count($data)== 0){
             $a=0;
 
