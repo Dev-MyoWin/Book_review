@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+
 
 class ReviewController extends Controller
 {
@@ -23,7 +26,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -34,7 +37,30 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = Review::where('user_id',Auth::user()->id)->where('book_id',$request->book_id)->get();
+
+        if(count($data)== 0){
+            $a=0;
+
+            Review::create([
+                'user_id' => Auth::user()->id,
+                'book_id' => $request->book_id,
+                'description'=> $request->review,
+                'rating'=> $request->rating,
+                'status'=>$a
+                ]);
+                return redirect('books/detail/'.$request->book_id);
+
+        }else{
+
+            Session::flash('message', 'Already make rating');
+
+
+        }
+
+
+
     }
 
     /**

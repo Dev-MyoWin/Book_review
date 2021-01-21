@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/rating.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/comment.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -45,7 +48,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -76,8 +79,11 @@
         </nav>
 
         <main class="py-4">
+
+
             @yield('content')
         </main>
     </div>
+    @yield('script')
 </body>
 </html>

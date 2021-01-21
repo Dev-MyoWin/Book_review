@@ -46,9 +46,23 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return view('books.detail', ['book' => Book::findOrFail($id)]);
+        $book = Book::findOrFail($id);
+
+        $sum = 0;
+
+        foreach ($book->reviews as $review){
+            $sum += $review->rating;
+        }
+        if($sum != 0){
+            $avg = $sum / count($book->reviews);
+        }else{
+            $avg = "No rating";
+        }
+
+        return view('books.detail', ['book'=>$book,'avg'=>$avg]);
 
     }
+
 
     /**
      * Show the form for editing the specified resource.
